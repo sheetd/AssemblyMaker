@@ -12,6 +12,7 @@ Imports MECMOD
 Imports ProductStructureTypeLib
 
 
+
 Public Module MainModule
 
     Public Filepath(0)
@@ -29,7 +30,7 @@ Public Module MainModule
     Sub Userform()
 
         'Process Userform
-        FilePath(0) = MainForm.TextBoxFilePath.Text
+        Filepath(0) = MainForm.TextBoxFilePath.Text
         InstanceUpdateCount = MainForm.NumericUpDownInstanceUpdateCount.Value
 
     End Sub
@@ -65,7 +66,7 @@ Public Module MainModule
         For i = 1 To AxisSystems.Count
 
             'Insert Part
-            MyProducts.AddComponentsFromFiles(FilePath, "All")
+            MyProducts.AddComponentsFromFiles(Filepath, "All")
 
             'Load new Part in Design Mode
             If i = 1 Then

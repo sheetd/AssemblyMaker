@@ -1,21 +1,11 @@
 ﻿Public Class MainForm
 
-    Private Sub ButtonGenerate_Click(sender As Object, e As EventArgs) Handles ButtonGenerate.Click
-
-        Me.Hide()
-
-        Call Main()
-
-        Me.Show()
-
-    End Sub
-
- 
     Private Sub ButtonAxisSystems_Click(sender As Object, e As EventArgs) Handles ButtomAxisSystems.Click
 
-        Dim CATIA As INFITF.Application
-        CATIA = GetObject(, "CATIA.Application")
+        'Check to see if CATIA is running
+        Call StartCATIA()
 
+        'Get Axis System selection from Userform
         Dim InputObjectType(0)
         InputObjectType(0) = "AxisSystem"
 
@@ -32,17 +22,24 @@
 
     End Sub
 
-
-
-
     Private Sub ButtonFilePath_Click(sender As Object, e As EventArgs) Handles ButtonFilePath.Click
 
-        Dim dialog As New OpenFileDialog()
-        If DialogResult.OK = dialog.ShowDialog Then
-            TextBoxFilePath.Text = dialog.FileName
+        'Set file path with dialog box
+        Dim FileDialog As New OpenFileDialog()
+        If DialogResult.OK = FileDialog.ShowDialog Then
+            TextBoxFilePath.Text = FileDialog.FileName
         End If
 
     End Sub
 
+    Private Sub ButtonGenerate_Click(sender As Object, e As EventArgs) Handles ButtonGenerate.Click
+
+        Me.Hide()
+
+        Call Main()
+
+        Me.Show()
+
+    End Sub
 
 End Class

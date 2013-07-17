@@ -2,21 +2,11 @@
 
     Private Sub ButtonAxisSystems_Click(sender As Object, e As EventArgs) Handles ButtomAxisSystems.Click
 
-        'Check to see if CATIA is running
-        Call StartCATIA()
-
-        'Get Axis System selection from Userform
-        Dim InputObjectType(0)
-        InputObjectType(0) = "AxisSystem"
-
-        Dim MySelection As INFITF.Selection
-        MySelection = CATIA.ActiveDocument.Selection
-        MySelection.Clear()
-
         Me.Hide()
 
-        Dim ListSel
-        ListSel = MySelection.SelectElement3(InputObjectType, "Select Axis Systems", True, INFITF.CATMultiSelectionMode.CATMultiSelTriggWhenUserValidatesSelection, True)
+        Call CheckCATIA()
+
+        Call ListSelection()
 
         Me.Show()
 

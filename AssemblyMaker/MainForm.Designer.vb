@@ -65,9 +65,9 @@ Partial Class MainForm
         Me.CheckBoxInstanceCount.AutoSize = True
         Me.CheckBoxInstanceCount.Location = New System.Drawing.Point(6, 88)
         Me.CheckBoxInstanceCount.Name = "CheckBoxInstanceCount"
-        Me.CheckBoxInstanceCount.Size = New System.Drawing.Size(240, 17)
+        Me.CheckBoxInstanceCount.Size = New System.Drawing.Size(239, 17)
         Me.CheckBoxInstanceCount.TabIndex = 3
-        Me.CheckBoxInstanceCount.Text = "Update assembly after this count of instances"
+        Me.CheckBoxInstanceCount.Text = "Update assembly after X number of instances"
         Me.CheckBoxInstanceCount.UseVisualStyleBackColor = True
         '
         'CheckBoxName

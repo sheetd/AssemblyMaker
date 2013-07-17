@@ -4,7 +4,6 @@ Imports MECMOD
 Imports ProductStructureTypeLib
 
 
-
 Public Module MainModule
 
     Public Filepath(0)
@@ -12,30 +11,33 @@ Public Module MainModule
     Public CATIA As INFITF.Application
     Public MyProduct As Product
     Public MyProducts As Products
+    Public MySelection As INFITF.Selection
     Public AxisSystems As Selection
 
-    Sub StartCATIA()
-
-        'Set-up CATIA object
-        CATIA = GetObject(, "CATIA.Application")
-
-        'Debug.WriteLineIf(CATIA Is Nothing, "Launching CATIA/DP. Create geometry support environment")
-        'Debug.WriteLineIf(CATIA IsNot Nothing, "CATIA/DP already open")
-
-        If CATIA Is Nothing Then
-            CATIA = CreateObject("CATIA.Application")
-            CATIA.Visible = True
-            MessageBox.Show("Starting CATIA")
-            Exit Sub
-        End If
-
-    End Sub
 
     Sub Main()
 
+        'Call CheckCATIA()
         Call ProcessUserform()
-
         Call CreateConstraint()
+
+    End Sub
+
+
+    Sub CheckCATIA()
+
+        CATIA = GetObject(, "CATIA.Application")
+
+        ''Error Checking to see if CATIA is running
+        'Debug.WriteLineIf(CATIA Is Nothing, "Launching CATIA/DP. Create geometry support environment")
+        'Debug.WriteLineIf(CATIA IsNot Nothing, "CATIA/DP already open")
+
+        'If CATIA Is Nothing Then
+        '    CATIA = CreateObject("CATIA.Application")
+        '    CATIA.Visible = True
+        '    MessageBox.Show("Starting CATIA")
+        '    Exit Sub
+        'End If
 
     End Sub
 
@@ -45,17 +47,16 @@ Public Module MainModule
         Filepath(0) = MainForm.TextBoxFilePath.Text
         InstanceUpdateCount = MainForm.NumericUpDownInstanceUpdateCount.Value
 
+        'Check for valid Axis System selection
+        If CATIA.ActiveDocument.Selection.Count = 0 Then
+            MessageBox.Show("No Axis Systems Selected")
+            'GO BACK TO FORM
+        End If
+
         'Check for valid filepath
         If Filepath(0) = "<No Selection>" Then
             MessageBox.Show("No Part/Product Selected")
-            'Go back to user selection?
-        End If
-
-        'Check for valid Axis System selection
-        AxisSystems = CATIA.ActiveDocument.Selection
-
-        If AxisSystems Is Nothing Then
-            MessageBox.Show("No Axis Systems Selected")
+            'GO BACK TO FORM
         End If
 
     End Sub
@@ -64,14 +65,13 @@ Public Module MainModule
     Sub CreateConstraint()
 
         MyProduct = CATIA.ActiveDocument.Product
-
         MyProducts = MyProduct.Products
 
         'Load product in to Design Mode
         'MyProduct.ApplyWorkMode(CatWorkModeType.DESIGN_MODE)
 
         'Loop for # of Axis Systems
-        For i = 1 To AxisSystems.Count
+        For i = 1 To MySelection.Count
 
             'Insert Part
             MyProducts.AddComponentsFromFiles(Filepath, "All")
@@ -88,7 +88,7 @@ Public Module MainModule
 
             'Select Axis Systems of Driver part
             Dim AxisRefName
-            AxisRefName = AxisSystems.Item(i).Value.Name
+            AxisRefName = MySelection.Item(i).Value.Name
 
             Dim RefPub1
             RefPub1 = MyProducts.Item(1).Publications.Item(AxisRefName)
@@ -124,7 +124,7 @@ Public Module MainModule
             End If
 
             'Display progress in the status bar
-            CATIA.StatusBar = "Instantiating " & i & " of " & AxisSystems.Count
+            CATIA.StatusBar = "Instantiating " & i & " of " & MySelection.Count
 
         Next i
 
@@ -138,9 +138,22 @@ Public Module MainModule
             CATIA.ActiveDocument.Save()
         End If
 
-
     End Sub
 
+    Sub ListSelection()
+
+        'Get Axis System selection from Userform
+        'Dim MySelection As INFITF.Selection
+        MySelection = CATIA.ActiveDocument.Selection
+        MySelection.Clear()
+
+        Dim InputObjectType(0)
+        InputObjectType(0) = "AxisSystem"
+
+        Dim ListSel
+        ListSel = MySelection.SelectElement3(InputObjectType, "Select Axis Systems", True, INFITF.CATMultiSelectionMode.CATMultiSelTriggWhenUserValidatesSelection, True)
+
+    End Sub
 
 
 End Module

@@ -4,7 +4,7 @@
 
         Me.Hide()
 
-        Call CheckCATIA()
+        Call StartCATIA()
 
         Call ListSelection()
 

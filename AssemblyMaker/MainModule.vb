@@ -12,19 +12,19 @@ Public Module MainModule
     Public MyProduct As Product
     Public MyProducts As Products
     Public MySelection As INFITF.Selection
-    Public AxisSystems As Selection
+    'Public AxisSystems As Selection
 
 
     Sub Main()
 
-        'Call CheckCATIA()
         Call ProcessUserform()
+
         Call CreateConstraint()
 
     End Sub
 
 
-    Sub CheckCATIA()
+    Sub StartCATIA()
 
         CATIA = GetObject(, "CATIA.Application")
 
@@ -50,13 +50,13 @@ Public Module MainModule
         'Check for valid Axis System selection
         If CATIA.ActiveDocument.Selection.Count = 0 Then
             MessageBox.Show("No Axis Systems Selected")
-            'GO BACK TO FORM
+            Call ListSelection()
         End If
 
         'Check for valid filepath
         If Filepath(0) = "<No Selection>" Then
             MessageBox.Show("No Part/Product Selected")
-            'GO BACK TO FORM
+            '
         End If
 
     End Sub
@@ -123,6 +123,12 @@ Public Module MainModule
                 End If
             End If
 
+            'Option to Update then Delete constraint on instantiation
+            If MainForm.CheckBoxDeleteConstraint.CheckState = CheckState.Checked Then
+                MyProduct.Update()
+                MyConstraints.Remove(MyConstraints.Count)
+            End If
+
             'Display progress in the status bar
             CATIA.StatusBar = "Instantiating " & i & " of " & MySelection.Count
 
@@ -143,7 +149,6 @@ Public Module MainModule
     Sub ListSelection()
 
         'Get Axis System selection from Userform
-        'Dim MySelection As INFITF.Selection
         MySelection = CATIA.ActiveDocument.Selection
         MySelection.Clear()
 

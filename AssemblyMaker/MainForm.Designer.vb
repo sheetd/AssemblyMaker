@@ -34,12 +34,14 @@ Partial Class MainForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ButtomAxisSystems = New System.Windows.Forms.Button()
         Me.ButtonFilePath = New System.Windows.Forms.Button()
+        Me.CheckBoxDeleteConstraint = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDownInstanceUpdateCount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckBoxDeleteConstraint)
         Me.GroupBox1.Controls.Add(Me.NumericUpDownInstanceUpdateCount)
         Me.GroupBox1.Controls.Add(Me.CheckBoxInstanceCount)
         Me.GroupBox1.Controls.Add(Me.CheckBoxName)
@@ -47,14 +49,14 @@ Partial Class MainForm
         Me.GroupBox1.Controls.Add(Me.CheckBoxUpdate)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 175)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(413, 110)
+        Me.GroupBox1.Size = New System.Drawing.Size(420, 135)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Options"
         '
         'NumericUpDownInstanceUpdateCount
         '
-        Me.NumericUpDownInstanceUpdateCount.Location = New System.Drawing.Point(242, 85)
+        Me.NumericUpDownInstanceUpdateCount.Location = New System.Drawing.Point(181, 87)
         Me.NumericUpDownInstanceUpdateCount.Name = "NumericUpDownInstanceUpdateCount"
         Me.NumericUpDownInstanceUpdateCount.Size = New System.Drawing.Size(57, 20)
         Me.NumericUpDownInstanceUpdateCount.TabIndex = 4
@@ -65,9 +67,9 @@ Partial Class MainForm
         Me.CheckBoxInstanceCount.AutoSize = True
         Me.CheckBoxInstanceCount.Location = New System.Drawing.Point(6, 88)
         Me.CheckBoxInstanceCount.Name = "CheckBoxInstanceCount"
-        Me.CheckBoxInstanceCount.Size = New System.Drawing.Size(239, 17)
+        Me.CheckBoxInstanceCount.Size = New System.Drawing.Size(180, 17)
         Me.CheckBoxInstanceCount.TabIndex = 3
-        Me.CheckBoxInstanceCount.Text = "Update assembly after X number of instances"
+        Me.CheckBoxInstanceCount.Text = "Update assembly after instance: "
         Me.CheckBoxInstanceCount.UseVisualStyleBackColor = True
         '
         'CheckBoxName
@@ -117,16 +119,19 @@ Partial Class MainForm
         '
         'TextBoxFilePath
         '
+        Me.TextBoxFilePath.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBoxFilePath.Location = New System.Drawing.Point(15, 133)
         Me.TextBoxFilePath.Name = "TextBoxFilePath"
         Me.TextBoxFilePath.ReadOnly = True
-        Me.TextBoxFilePath.Size = New System.Drawing.Size(513, 20)
+        Me.TextBoxFilePath.Size = New System.Drawing.Size(417, 20)
         Me.TextBoxFilePath.TabIndex = 3
         Me.TextBoxFilePath.Text = "<No Selection>"
         '
         'ButtonGenerate
         '
-        Me.ButtonGenerate.Location = New System.Drawing.Point(431, 254)
+        Me.ButtonGenerate.Location = New System.Drawing.Point(333, 327)
         Me.ButtonGenerate.Name = "ButtonGenerate"
         Me.ButtonGenerate.Size = New System.Drawing.Size(97, 33)
         Me.ButtonGenerate.TabIndex = 8
@@ -160,11 +165,21 @@ Partial Class MainForm
         Me.ButtonFilePath.Text = "Click to Select"
         Me.ButtonFilePath.UseVisualStyleBackColor = True
         '
+        'CheckBoxDeleteConstraint
+        '
+        Me.CheckBoxDeleteConstraint.AutoSize = True
+        Me.CheckBoxDeleteConstraint.Location = New System.Drawing.Point(6, 111)
+        Me.CheckBoxDeleteConstraint.Name = "CheckBoxDeleteConstraint"
+        Me.CheckBoxDeleteConstraint.Size = New System.Drawing.Size(359, 17)
+        Me.CheckBoxDeleteConstraint.TabIndex = 5
+        Me.CheckBoxDeleteConstraint.Text = "Update then delete constraint while running (unconstrained placement)"
+        Me.CheckBoxDeleteConstraint.UseVisualStyleBackColor = True
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(540, 298)
+        Me.ClientSize = New System.Drawing.Size(444, 372)
         Me.Controls.Add(Me.ButtonFilePath)
         Me.Controls.Add(Me.ButtomAxisSystems)
         Me.Controls.Add(Me.ButtonGenerate)
@@ -193,4 +208,5 @@ Partial Class MainForm
     Friend WithEvents CheckBoxUpdate As System.Windows.Forms.CheckBox
     Friend WithEvents NumericUpDownInstanceUpdateCount As System.Windows.Forms.NumericUpDown
     Friend WithEvents CheckBoxInstanceCount As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBoxDeleteConstraint As System.Windows.Forms.CheckBox
 End Class

@@ -2,13 +2,13 @@
 
 ##Version##
 Assembly Maker v1.0  
-2013/07/02 by Neil Meredith <nmeredith@gehrytech.com>  
+2013/07/19 by Neil Meredith <nmeredith@gehrytech.com>  
 
 ##Requirements##
 Digital Project V1R5 or CATIA V5-6R2012 (aka R22)  
 
 ##Description##
-Inserts a Part/Product in to an assembly and then constrains the axis system of new part/product to a selection of axis system.  
+Assembly Maker is a CATIA/Digital Project tool that allows you to batch insert a part/product in to an assembly and then constrains the axis system of new part/product to a selection of axis systems. 
 
 ##Usage##
 Open "ContextModel.CATProduct" (and load in Design Model if you are using the Cache system).  
@@ -21,5 +21,5 @@ Close to window to Quit AssemblyMaker
 ##Notes##
 Axis systems between the various parts should match "handendness"  
 Axis systems in the driver part and in the assembly should be published (see sample parts)  
-All parts should be saved prior to running the AssemblyMaker  
-The 1st publication in the assembly part/product will be used in creating the assembly constraints  
+All parts/products ussed in the assembly should be saved prior to running the AssemblyMaker  
+The 1st publication in the assembly part/product will be used in creating the axis-to-axis assembly constraints  

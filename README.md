@@ -2,7 +2,7 @@
 
 ##Version##
 Assembly Maker v1.0  
-2013/07/19 by Neil Meredith <nmeredith@gehrytech.com>  
+2013/07/19 by Neil Meredith <neil@sheetd.com>  
 
 ##Requirements##
 Digital Project V1R5 or CATIA V5-6R2012 (aka R22)  

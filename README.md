@@ -20,7 +20,7 @@ Assembly Maker is a CATIA/Digital Project tool that allows you to batch insert a
 - Run the program
 
 ![Usage](Documentation/AssemblyMaker_05.png)
-![Usage](Documentation/AssemblyMaker_05.png)
+![Usage](Documentation/AssemblyMaker_06.png)
 
 ##Limitations##
 - Axis systems between the various parts should match "handendness"  
